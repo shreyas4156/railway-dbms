@@ -6,12 +6,9 @@
 </head>
 <style>
 body{
-	background-image:url("images/img1.jpg");
-	 background-repeat: no-repeat;
-	-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: fit;
+	background:url("images/img1.jpg")no-repeat center fixed;
+  background-size:cover;
+  font-family:sans-serif;
   text-align:center;
 }
 * {
@@ -89,9 +86,21 @@ button:hover {
   background-color: #4CAF50;
 }
 
-
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
 </style>
 <body>
+  <table bgcolor="#ffffcc"><tr><td><a href="index.htm">
+<img src="images/icon..png" alt="icon" style="width:50px;height:60px;"></td></a>
+<td><h1>Railway Reservation System</h1></td>
+</tr>
+</table>
+
+<a href="index.htm"><div class="topright"><h4>login here</h4></div></a>
 <form id="regForm" action="register.jsp">
   <h1>User Registration:</h1>
   <!-- One "tab" for each step in the form: -->

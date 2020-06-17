@@ -6,18 +6,20 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Search</title>
 </head>
 <style>
 
+
 body{
-	background-image:url("images/img7.jpg");
+	
 	 background-repeat: no-repeat;
 	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: fit;
   text-align:center;
+  font-family:sans-serif;
 }
   button {
   background-color: #4CAF50;
@@ -51,18 +53,39 @@ form input {
   background-color: #E3E2DE;
   margin: 10px auto;
   font-family: Raleway;
-  padding: 40px;
+  
   width: 100%;
   min-width: 300px;
 }
 </style>
-<body id="regForm">
-<% 
+<% response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
 response.setDateHeader("Expires", 0);
 if ((session.getAttribute("userid")== null) || (session.getAttribute("userid")== "")) {
 	response.sendRedirect("timeout.htm");
 	
-  }  else {
+  }  else { %>
+<body id="regForm" style="font-family:sans-serif">
+<table bgcolor="#ffffcc"><tr><td>
+
+<img src="images/icon..png" alr="icon" style="width:50px;height:60px;"></td>
+<td><h1>Railway Reservation System</h1></td><td></td>
+<td><% if(session.getAttribute("userid").equals("shreyas"))
+	
+out.println("<a style='color:green' href='AdminHome.jsp'><b>Home</b></a>");
+else 	out.println("<a style='color:green'  href='userlogin.jsp'><b>Home</b></a>");
+
+%></td><td> <a style="color:green" href="search.jsp"><strong>Back</strong></a>
+</tr>
+<td> <div class="topright">
+<h2>
+<%=session.getAttribute("userid") %>
+<a href ="logout.jsp">log out</h2></a>
+</div>
+</table>
+<center>
+
+<% 
+
   
   String source=request.getParameter("source");
   String destination=request.getParameter("destination");
@@ -97,7 +120,7 @@ ResultSet rs6=st6.executeQuery("select * from fare where class='economic' and tr
 while(rs.next() && rs1.next() && rs2.next()&& rs3.next()&& rs4.next()&& rs5.next()&& rs6.next()) {
 %>
 <form  method ="post">
- <table bgcolor="white" border="1" width="30%" cellpadding="3">
+ <table bgcolor=#ffffcc border="1" width="30%" cellpadding="5">
 	  <tr><td>Train number</td><td><input type="text" value="<%=rs.getString("train_no")%>" name="train_no" readonly="readonly"></td></tr>
 	  <tr><td>Train name</td><td><input type="text" value="<%=rs.getString("train_name")%>" name="tname" readonly="readonly"></td></tr>
 	  <tr><td>Source</td><td><input type="text" value="<%=rs.getString("source")%>" name="source" readonly="readonly"></td></tr>
@@ -130,7 +153,8 @@ while(rs.next() && rs1.next() && rs2.next()&& rs3.next()&& rs4.next()&& rs5.next
 	  </tr>
 	  <tr><div style="overflow:auto;">
     <div style="float:right;">
-	  <td></td><td> <button type="submit" formaction='book1.jsp' >Book</button></td> 
+    <td></td><td> <button type="submit" formaction='book1.jsp' >Book</button></td>
+	   
 	  <td></td><td><button type="submit" formaction='book2.jsp'>Book</button></td>
 	  <td></td><td> <button type="submit"  formaction='book3.jsp'>Book</button></td>
 	  <td></td><td> <button type="submit"  formaction='book4.jsp'>Book</button></td>
@@ -140,6 +164,8 @@ while(rs.next() && rs1.next() && rs2.next()&& rs3.next()&& rs4.next()&& rs5.next
 	  </table>
 	  </form>
 	  <% } 
+
+
 if(rs.first()==true && rs1.first()==true && rs2.first()==true && rs3.first()==true)
 {
 	%><br><br><br><%
@@ -147,8 +173,7 @@ if(rs.first()==true && rs1.first()==true && rs2.first()==true && rs3.first()==tr
 	session.setAttribute("date", date);
 	session.setAttribute("source", source);
 	session.setAttribute("destination", destination);
-	session.setAttribute("atime", atime);
-	session.setAttribute("dtime", dtime);
+	
 }
 else
 {
@@ -162,7 +187,6 @@ catch(Exception e)
 	
 	System.out.print(e);
 	e.printStackTrace();
-	
 }
   }
 
@@ -171,6 +195,6 @@ catch(Exception e)
 <br>
 <br>
 <a href="search.jsp">Search other trains</a>
- <div class="topright"><a href="logout.jsp">Log out</a></div>
+</center>
 </body>
 </html>

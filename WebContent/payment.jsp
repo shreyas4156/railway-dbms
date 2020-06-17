@@ -25,7 +25,7 @@
 </head>
 <body>
 <table>
-<form action="booked.jsp">
+<form action="http://paytm.com/">
 <tr>
 <td><h3>Card Number:</h3></td>
 <td><input type="number" name="cno" required> </td>

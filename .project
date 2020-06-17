@@ -35,6 +35,11 @@
 			<locationURI>PARENT-2-PROJECT_LOC/Desktop/background1.jpg</locationURI>
 		</link>
 		<link>
+			<name>WebContent/images/giphy.gif</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/giphy.gif</locationURI>
+		</link>
+		<link>
 			<name>WebContent/images/icon..png</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Desktop/icon..png</locationURI>
@@ -73,6 +78,11 @@
 			<name>WebContent/images/img7.jpg</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/Downloads/img7.jpg</locationURI>
+		</link>
+		<link>
+			<name>WebContent/images/tenor.gif</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Desktop/tenor.gif</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

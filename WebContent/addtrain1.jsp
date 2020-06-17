@@ -14,7 +14,7 @@ response.setDateHeader("Expires", 0);
 if ((session.getAttribute("userid")== null) || (session.getAttribute("userid")== "")) {
 	response.sendRedirect("timeout.htm");
 	
-  }  else {
+  }  else {  if((session.getAttribute("userid")).equals("shreyas")){
   String a1="ac1";
   String a2="ac2";
   String a3="ac3";
@@ -60,6 +60,7 @@ out.println("<body>");
    out.println("<tr color='red'>");
    out.println("<td ><font size=4 color=red >Train Already Exist</font></td>");
    out.println("</tr>");
+   out.println("<tr><td><a style='color:green' href='addtrain.jsp'>back</a></td></tr>");
    out.println("</table>");
    out.println("</body>");
    out.println("</html>");
@@ -112,7 +113,7 @@ else{
   e.printStackTrace();
   }
   
-  }
+  }else response.sendRedirect("userlogin.jsp"); }
  %>
 </body>
 </html>

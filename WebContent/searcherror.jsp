@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -21,15 +21,6 @@ body {
   font-family:sans-serif;
   text-align:center;
 }
-button {
-  background-color: green;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  
-  cursor: pointer;
-}
 </style>
 <% 
 response.setDateHeader("Expires", 0);
@@ -45,7 +36,7 @@ if ((session.getAttribute("userid")== null) || (session.getAttribute("userid")==
 <td><% if(session.getAttribute("userid").equals("shreyas"))
 	
 out.println("<a style='color:green' href='AdminHome.jsp'><b>Back</b></a>");
-else 	out.println("<a style='color:green' href='userlogin.jsp'><b>Back</b></a>");
+else 	out.println("<a href='userlogin.jsp'>Back</a>");
 %>
  </td></tr>
 <td> <div class="topright">
@@ -91,17 +82,17 @@ else 	out.println("<a style='color:green' href='userlogin.jsp'><b>Back</b></a>")
  </td>
 </tr>
 <tr>
-<td> Date:<input name="date" type="date"  onload="getDate()" required><br> <br>
+<td> Date:<input type="date" name="date" onload="getDate()" required><br> <br>
  </td>
 </tr>
 <tr>
 <td>
-<button type="submit" value="search">Search</button> <br> <br>
+<input type="submit" value="search"> <br> <br>
 </td>
 </tr>
 </table>
 </form>
-
+<h2 style="color:red;">Train not found</h2>
 
 </center>
 <script type="text/javascript">
@@ -109,7 +100,6 @@ var today = new Date().toISOString().split('T')[0];
 document.getElementsByName("date")[0].setAttribute('min', today);
 
 </script>
-
 <% } %>
 </body>
 </html>

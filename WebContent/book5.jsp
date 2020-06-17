@@ -11,6 +11,12 @@
         <title>Book Ticket</title>
     </head>
     <style>
+       .topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
     button {
   background-color: #4CAF50;
   color: #ffffff;
@@ -29,11 +35,7 @@ button:hover {
 }
     #regForm {
   background-color: #E3E2DE;
-  margin: 100px auto;
-  font-family: Raleway;
-  padding: 40px;
-  width: 70%;
-  min-width: 300px;
+  font-family:sans-serif;
 }</style>
     <body id="regForm" >
     <% 
@@ -44,8 +46,48 @@ if ((session.getAttribute("userid")== null) || (session.getAttribute("userid")==
 	
   }  else  if((request.getParameter("train_no")== null)){
     	 response.sendRedirect("search.jsp");}
-    	 else { %>
-<p><%session.getAttribute("userid");%></p>
+    	 else{  
+        	 if(request.getParameter("economic").equals("0")){
+     			out.println("<html>");
+     			   out.println("<head>");
+     			out.println("<title>MeterDetailsPage</title>");
+     			out.println("</head>");
+     			out.println("<body>");
+     			   out.println("<table align='center' color='red'>");
+     			   out.println("<tr color='red'>");
+     			   out.println("<td ><font size=4 color=red >Tickets Not Available</font></td>");
+     			   out.println("</tr>");
+     			   out.println("<tr><td><a style='color:green' href='search.jsp'>back</a></td></tr>");
+     			   out.println("</table>");
+     			   out.println("</body>");
+     			   out.println("</html>");
+     			   }
+     	 else{ %>
+<p><%session.getAttribute("userid");
+
+String atime=request.getParameter("atime"); 
+String dtime=request.getParameter("dtime");
+%></p>
+<table bgcolor="#ffffcc"><tr><td>
+
+<img src="images/icon..png" alr="icon" style="width:50px;height:60px;"></td><td></td>
+<td><% if(session.getAttribute("userid").equals("shreyas"))
+	
+out.println("<a style='color:green' href='AdminHome.jsp'><b>Home</b></a>");
+else 	out.println("<a style='color:green'  href='userlogin.jsp'><b>Home</b></a>");
+
+%></td><td> <a style="color:green" href="search.jsp"><strong>Back</strong></a></td>
+
+<td><h1>Railway Reservation System</h1></td>
+</tr>
+<td> <div class="topright">
+<h2>
+<%=session.getAttribute("userid") %>
+<a href ="logout.jsp">log out</h2></a>
+</div>
+</td>
+</table>
+<br><br><br>
 <center>
 <table border="1.1" width="60%" height="60%">
 <form  method="post" action="bookconfirm.jsp">
@@ -83,9 +125,9 @@ if ((session.getAttribute("userid")== null) || (session.getAttribute("userid")==
 <tr><td><h4>Train number:</h4></td>
 <td><input type="text" value="<%=request.getParameter("train_no")  %>" name="train_no" readonly></td>
 <td><h4>Class:</h4></td>
-<td><input type="text" value="Economic" name="clss" readonly></td>
+<td><input type="text" value="ECONOMIC" name="clss" readonly></td>
 <td><h4>Fare: ₹.</h4></td>
-<td><input type="text" value="<%=request.getParameter("fare2")%>" name="fare" readonly></td>
+<td><input type="text" value="<%=request.getParameter("fare5")%>" name="fare" readonly></td>
 
 
 </tr>
@@ -101,6 +143,10 @@ if ((session.getAttribute("userid")== null) || (session.getAttribute("userid")==
         </form>
         
         <br><br><a href='logout.jsp'>Log out</a>
-         </center> <%} %>
+         </center> <%
+
+         session.setAttribute("atime", atime);
+     	session.setAttribute("dtime", dtime);
+    	 } }%>
     </body>
 </html>

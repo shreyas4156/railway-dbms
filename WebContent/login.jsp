@@ -9,9 +9,11 @@ Class.forName("com.mysql.jdbc.Driver");
 java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/yucon","root","shreyas");
 Statement st= con.createStatement();
 ResultSet rs=st.executeQuery("select * from users where userid='"+userid+"' and password='"+password+"'");
-response.setHeader("Pragma","no-cache");
-response.setHeader("Cache-Control","no-store");
-response.setDateHeader("Expires",-1);
+response.setHeader ("Pragma", "no-cache");
+response.setHeader ("Cache-Control", "no-cache");
+response.setHeader ("Cache-Control", "no-store");     
+
+
 try{
 	
 	if (userid.equals("shreyas") && password.equals("aaaaaa1")) {
@@ -27,7 +29,8 @@ if(rs.next())
 response.sendRedirect("userlogin.jsp");	
 }
 else{
-out.println("Invalid password or username.");
+	 response.sendRedirect("Adminerror.jsp");
+	
 }
 }}
 catch (Exception e) {

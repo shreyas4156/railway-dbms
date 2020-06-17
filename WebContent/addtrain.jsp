@@ -7,18 +7,26 @@
 <title>Train Registration</title>
 </head>
 <style>
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-image:url("images/img3.jpg");
+  background:url("images/img3.jpg") no-repeat center fixed;
+  background-size:cover;
+  font-family:sans-serif;
 }
 
 #regForm {
-  background-color: white;
-  margin: 100px auto;
-  font-family: Raleway;
+  background-color: #ffffcc;
+  margin: 100px auto;                                                                                                                               
+  font-family: sans-serif;
   padding: 40px;
   width: 70%;
   min-width: 300px;
@@ -85,14 +93,46 @@ button:hover {
   background-color: #4CAF50;
 }
 </style>
-<body>
 <% 
 response.setDateHeader("Expires", 0);
 if ((session.getAttribute("userid")== null) || (session.getAttribute("userid")== "")) {
 	response.sendRedirect("timeout.htm");
 	
-  }  else { %>	
+  }  else {  if((session.getAttribute("userid")).equals("shreyas")){%>	
  
+
+<body>
+ <script type="text/javascript">
+  window.history.forward();
+  function noBcack()
+  {
+	  window.history.forward();
+	  
+  }
+  
+  </script>
+   <body onLoad="noBack();"
+   onpageshow="if(event.persisted) onBack();" onUnload="">
+
+<table bgcolor="#ffffcc"><tr><td><a href="AdminHome.jsp">
+<img src="images/icon..png" alr="icon" style="width:50px;height:60px;"></td></a>
+<td><h1>Railway Reservation System</h1></td><td></td>
+<td><% if(session.getAttribute("userid").equals("shreyas"))
+	
+out.println("<a style='color:green' href='AdminHome.jsp'><b>Back</b></a>");
+else 	out.println("<a href='userlogin.jsp'>Back</a>");
+%>
+ </td>
+<td></td>
+<td> <div class="topright">
+<h2>
+<%=session.getAttribute("userid") %>
+<a style="color:blue" href ="logout.jsp">log out</h2></a>
+</div>
+
+</tr>
+
+</table>
 
 
 <form id="regForm" action="addtrain1.jsp">
@@ -230,6 +270,6 @@ function fixStepIndicator(n) {
 </script>
  
   
-  <% } %>
+  <% } else response.sendRedirect("userlogin.jsp"); } %>
 </body>
 </html>
